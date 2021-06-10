@@ -18,14 +18,6 @@ const users = [
 
 app.use(express.json())
 
-
-app.get('/', async (req, res) => {
-    const hasher = crypto.createHmac('sha256', 'mykey');
-
-    const hash = hasher.update('name').digest('hex');
-    res.end(hash)
-})
-
 app.get('/users', async (req, res) => {
     const etagHash = computeHash(JSON.stringify(users));
 
